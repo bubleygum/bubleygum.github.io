@@ -49,6 +49,7 @@
           <!-- Link to another page -->
           <a href="C:\xampp\htdocs\framework7\pages\index.html">Back to index</a>
         </div>
+        
       </div>
     </div>
   </div>
@@ -56,9 +57,15 @@
   <script type="text/javascript" src="js\framework7.bundle.min.js"></script>
   <!-- Path to your app js-->
   <!-- <script type="text/javascript" src="CSS & JS\test.js"></script> -->
-  <script>
-
-  </script>
+    <script>
+      document.querySelector('p').addEventListener('touchstart', f);
+      document.querySelector('p').addEventListener('touchend',f);
+      document.querySelector('p').addEventListener('touchmove',f);
+    
+      function f(ev) {
+        console.log( ev.touches, ev.type );
+      }
+    </script>
 </body>
 
 </html>
