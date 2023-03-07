@@ -1,27 +1,122 @@
-
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Write Title Here</title>
-<link rel="stylesheet" media="(orientation: portrait)" href="potrait.css">
-<link rel="stylesheet" media="(orientation: landscape)" href="landscape.css">
-<style>
-@media only screen and (max-width: 600px) {
-  h1{
-    color: green;
-  }
-}
-@media only screen and (min-width: 601px) {
-  h1{
-    color: blue;
-  }
-}
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Write Title Here</title>
+  <link rel="stylesheet" media="(orientation: portrait)" href="potrait.css">
+  <link rel="stylesheet" media="(orientation: landscape)" href="landscape.css">
+  <style>
+    @media only screen and (max-width: 600px) {
+      h1 {
+        color: green;
+      }
+    }
+
+    @media only screen and (min-width: 601px) {
+      h1 {
+        color: blue;
+      }
+    }
+
+    .flex-container {
+      display: flex;
+      /* flex-direction: row; */
+      justify-content: center;
+      background-color: blueviolet;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .flex-container>div {
+      background-color: #f1f1f1;
+      width: 100px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
+
+    }
+
+    div :hover {
+      background-color: aquamarine;
+    }
   </style>
 </head>
+
 <body>
-  <h1>h1</h1>
+  <script>
+    //pertemuan 3
+    // fetch("https://reqres.in/api/users")
+    //     .then(respon => console.log(respon))
+
+    //ini yg benar
+    // fetch("https://reqres.in/api/users", {method: "get"})
+    //   .then(res => res.json())
+    //   .then(data => console.log(data))
+    //   .catch(function(err){
+    //     window.alert("Error deh")
+    //   })
+
+    //ini link nya sengaja dibuat typo biar keluar err nya
+    // fetch("https://reqres.in/ai/users", {method: "get"})
+    //   .then(res => res.json())
+    //   .then(data => console.log(data))
+    //   .catch(function(err){
+    //     window.alert("Error deh")
+    //   })
+    async function foo() {
+      let obj;
+      const res = await fetch('https://reqres.in/api/users')
+      obj = await res.json();
+      return obj;
+    }
+
+    // foo().then(varData => { //console.log(data)
+    //   for (i = 0; i < varData.data.length; i++) {
+    //     console.log(varData["data"][i].email)
+    //     console.log(varData["data"][i].first_name)
+    //     console.log(varData["data"][i].last_name)
+    //     console.log(varData["data"][i].avatar)
+    //   }
+    // });
+
+    foo().then(varData => { //console.log(data)
+      for (i = 0; i < varData.data.length; i++) {
+        let td = document.createElement('td');
+        document.getElementById("email").innerHTML = varData.data[i].email;
+        document.getElementById("first_name").innerHTML = varData.data[i].first_name;
+        document.getElementById("last_name").innerHTML = varData.data[i].last_name;
+        document.getElementById("avatar").innerHTML = varData.data[i].avatar;
+      }
+    });
+  </script>
+  <h1>Pertemuan 1</h1>
+  <div class="flex-container">
+    <div class="item" style="order: 3; flex-grow: 1;">one</div>
+    <div class="item" style="order: 2; flex-grow: 5;">two</div>
+    <div class="item" style="order: 1; flex-grow: 8;">three</div>
+  </div>
+
+  <table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Avatar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="email"></td>
+            <td id="first_name"></td>
+            <td id="last_name"></td>
+            <td id="avatar"></td>
+        </tr> 
+    </tbody>
+</table>
 </body>
+
 </html>
