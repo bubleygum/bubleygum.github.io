@@ -4,7 +4,7 @@ self.addEventListener('install', function(event) {
         .then(function(cache) {
           cache.addAll([
             '/',
-            'bubleygum.github.io/index.html',
+            '/index.html',
             'bubleygum.github.io/app.css',
             'bubleygum.github.io/app.js'
           ])
