@@ -142,3 +142,40 @@ self.addEventListener('install', function(event) {
   )
 });
 
+//Dynamic Caching (cache opened pages)
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        if (response) {
+          return response;
+        } else {
+          return fetch(event.request)		//newly opened pages are cached dynamically
+            .then(function(res) {
+              return caches.open('dynamic')
+                .then(function(cache) {
+                  cache.put(event.request.url, res.clone());
+                  return res;
+                })
+            });
+        }
+      })
+  );
+});
+
+//Delete old cache
+self.addEventListener('activate', function(event) {
+  console.log('[Service Worker] Activating Service Worker ....', event);
+  event.waitUntil(
+    caches.keys()
+      .then(function(keyList) {
+        return Promise.all(keyList.map(function(key) {
+          if (key !== CACHE_STATIC_NAME && key !== CACHE_DYNAMIC_NAME) {
+            console.log('[Service Worker] Removing old cache.', key);
+            return caches.delete(key);
+          }
+        }));
+      })
+  );
+  return self.clients.claim();
+});
