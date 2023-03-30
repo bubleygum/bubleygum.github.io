@@ -53,3 +53,92 @@ animate();
 button.addEventListener('click', function () {
     animate();
 });
+
+var deferredPrompt;
+window.addEventListener('beforeinstallprompt', function(event) {
+  console.log('beforeinstallprompt fired');
+  event.preventDefault();
+  deferredPrompt = event;
+  return false;
+});
+
+fetch('https://httpbin.org/ip').
+  then(function(response) {
+    console.log(response);
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+
+fetch('https://httpbin.org/post', {
+  method: 'post',
+  headers: {
+    'Content-type': 'application/json',
+    'Accept': 'application/json'
+  },
+    mode: 'cors',
+    body: JSON.stringify({message: 'Does this work?'})
+  })
+  .then(function(response) {
+    console.log(response);
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+
+//cache
+self.addEventListener('install', function(event) {
+  console.log('[Service Worker] Installing Service Worker ...', event);
+  event.waitUntil(
+    caches.open('static')
+      .then(function(cache) {
+        console.log('[Service Worker] Precaching App Shell');
+        cache.add('/src/js/app.js')
+      })
+  )
+});
+
+self.addEventListener('activate', function(event) {
+  console.log('[Service Worker] Activating Service Worker ....', event);
+  return self.clients.claim();
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(fetch(event.request));
+});
+
+//install
+self.addEventListener('install', function(event) {
+  console.log('[Service Worker] Installing Service Worker ...', event);
+  self.skipWaiting(); //PENTING bila ada versi baru!!
+  event.waitUntil(
+    caches.open('static')
+      .then(function(cache) {
+        console.log('[Service Worker] Precaching App Shell');
+        cache.addAll([
+          '/',
+          '/index.html',
+          '/src/js/app.js',
+          '/src/js/feed.js',
+          '/src/js/promise.js',
+          '/src/js/fetch.js',
+          '/src/js/material.min.js',
+          '/src/css/app.css',
+          '/src/css/feed.css',
+          '/src/images/main-image.jpg',
+          'https://fonts.googleapis.com/css?family=Roboto:400,700',
+          'https://fonts.googleapis.com/icon?family=Material+Icons',
+          'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css'
+        ]);
+      })
+  )
+});
+
