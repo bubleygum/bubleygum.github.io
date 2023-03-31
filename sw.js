@@ -22,6 +22,19 @@ self.addEventListener('install', function(event) {
     );
   });
   
+  fetch('https://httpbin.org/ip').
+  then(function(response) {
+    console.log(response);
+    return response.json();
+  })
+  .then(function(data) {
+    console.log(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+
+
   //cache
   self.addEventListener('install', function(event) {
     console.log('[Service Worker] Installing Service Worker ...', event);
@@ -85,17 +98,17 @@ self.addEventListener('install', function(event) {
     )
   });
   
-  //cache then network
-  self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.open(CACHE_DYNAMIC_NAME)
-        .then(function(cache) {
-          return fetch(event.request)
-            .then(function(res) {
-              cache.put(event.request, res.clone());
-              return res;
-            });
-        })
-    );
-  });
+//   //cache then network
+//   self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//       caches.open(CACHE_DYNAMIC_NAME)
+//         .then(function(cache) {
+//           return fetch(event.request)
+//             .then(function(res) {
+//               cache.put(event.request, res.clone());
+//               return res;
+//             });
+//         })
+//     );
+//   });
   
