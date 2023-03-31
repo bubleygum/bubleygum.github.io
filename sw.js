@@ -96,7 +96,26 @@ self.addEventListener('install', function(event) {
     console.log(err);
   });
 
-
+  fetch('https://httpbin.org/post', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json'
+    },
+      mode: 'cors',
+      body: JSON.stringify({message: 'Does this work?'})
+    })
+    .then(function(response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(function(data) {
+      console.log(data);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  
   //cache
   self.addEventListener('install', function(event) {
     console.log('[Service Worker] Installing Service Worker ...', event);
