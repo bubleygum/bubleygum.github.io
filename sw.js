@@ -11,6 +11,7 @@ self.addEventListener('install', function(event) {
             '/about.html',
             '/app.js',
             '/styles.css',
+            '/manifest.json',
             '/images/about-header.jpg',
             '/images/contact-image.jpg',
             '/images/example-blog01.jpg',
