@@ -47,6 +47,22 @@ self.addEventListener('install', function(event) {
             '/images/example-work07.jpg',
             '/images/example-work08.jpg',
             '/images/example-work09.jpg',
+            '/images/footer-background.jpg',
+            '/images/header-bg.jpg',
+            '/images/photo.jpg',
+            '/images/photo-wide.jpg',
+            '/images/portfolio-example-01.jpg',
+            '/images/portfolio-example-02.jpg',
+            '/images/portfolio-example-03.jpg',
+            '/images/portfolio-example-04.jpg',
+            '/images/portfolio-example-05.jpg',
+            '/images/portfolio-example-06.jpg',
+            '/images/logo512.ico',
+            '/images/logo256.ico',
+            '/images/logo128.ico',
+            '/images/logo96.ico',
+            '/images/logo64.ico',
+            '/images/logo48.ico',
             'https://fonts.googleapis.com/css?family=Roboto:400,700',
             'https://fonts.googleapis.com/icon?family=Material+Icons',
             'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css'
@@ -54,7 +70,7 @@ self.addEventListener('install', function(event) {
         })
     )
   });
-  
+
   self.addEventListener('fetch', function(event) {
     event.respondWith(
       caches.match(event.request)
