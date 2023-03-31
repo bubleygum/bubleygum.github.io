@@ -8,6 +8,7 @@ self.addEventListener('install', function(event) {
             '/index.html',
             '/blog.html',
             '/contact.html',
+            '/portfolio-example01.html',
             '/about.html',
             '/app.js',
             '/styles.css',
@@ -46,7 +47,12 @@ self.addEventListener('install', function(event) {
             '/images/logo128.ico',
             '/images/logo96.png',
             '/images/logo64.ico',
-            '/images/logo48.ico'
+            '/images/logo48.ico',
+            '/Tutorial/step01-initial-HTML-setup.html',
+            '/Tutorial/step02-MDL-layout-component.html',
+            '/Tutorial/step03-the-grid-component.html',
+            '/Tutorial/step03-the-grid-component.html',
+            '/Tutorial/step03-the-grid-component.html',
           ])
         })
     );
@@ -63,27 +69,6 @@ self.addEventListener('fetch', function(event) {
     );
   });
 
-//cache
-// self.addEventListener('install', function(event) {
-//     console.log('[Service Worker] Installing Service Worker ...', event);
-//     event.waitUntil(
-//       caches.open('static')
-//         .then(function(cache) {
-//           console.log('[Service Worker] Precaching App Shell');
-//           cache.add('/app.js')
-//         })
-//     )
-//   });
-  
-//   self.addEventListener('activate', function(event) {
-//     console.log('[Service Worker] Activating Service Worker ....', event);
-//     return self.clients.claim();
-//   });
-  
-//   self.addEventListener('fetch', function(event) {
-//     event.respondWith(fetch(event.request));
-//   });
-  
   //cache then network
   self.addEventListener('fetch', function(event) {
     event.respondWith(
