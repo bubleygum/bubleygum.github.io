@@ -52,7 +52,8 @@ self.addEventListener('install', function(event) {
             '/Tutorial/step02-MDL-layout-component.html',
             '/Tutorial/step03-the-grid-component.html',
             '/Tutorial/step03-the-grid-component.html',
-            '/Tutorial/step03-the-grid-component.html',
+            '/Tutorial/step04-customising-the-layout.html',
+            '/Tutorial/styles.css'
           ])
         })
     );
