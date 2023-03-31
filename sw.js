@@ -59,25 +59,24 @@ self.addEventListener('install', function(event) {
             '/about.html',
             '/app.js',
             '/styles.css',
-            '/images/*',
-            // '/images/about-header.jpg',
-            // '/images/contact-image.jpg',
-            // '/images/example-blog01.jpg',
-            // '/images/example-blog02.jpg',
-            // '/images/example-blog03.jpg',
-            // '/images/example-blog04.jpg',
-            // '/images/example-blog05.jpg',
-            // '/images/example-blog06.jpg',
-            // '/images/example-blog07.jpg',
-            // '/images/example-work01.jpg',
-            // '/images/example-work02.jpg',
-            // '/images/example-work03.jpg',
-            // '/images/example-work04.jpg',
-            // '/images/example-work05.jpg',
-            // '/images/example-work01.jpg',
-            // '/images/example-work01.jpg',
-            // '/images/example-work01.jpg',
-            // '/images/example-work01.jpg',
+            '/images/about-header.jpg',
+            '/images/contact-image.jpg',
+            '/images/example-blog01.jpg',
+            '/images/example-blog02.jpg',
+            '/images/example-blog03.jpg',
+            '/images/example-blog04.jpg',
+            '/images/example-blog05.jpg',
+            '/images/example-blog06.jpg',
+            '/images/example-blog07.jpg',
+            '/images/example-work01.jpg',
+            '/images/example-work02.jpg',
+            '/images/example-work03.jpg',
+            '/images/example-work04.jpg',
+            '/images/example-work05.jpg',
+            '/images/example-work06.jpg',
+            '/images/example-work07.jpg',
+            '/images/example-work08.jpg',
+            '/images/example-work09.jpg',
 
             'https://fonts.googleapis.com/css?family=Roboto:400,700',
             'https://fonts.googleapis.com/icon?family=Material+Icons',
@@ -85,5 +84,19 @@ self.addEventListener('install', function(event) {
           ]);
         })
     )
+  });
+  
+  //cache then network
+  self.addEventListener('fetch', function(event) {
+    event.respondWith(
+      caches.open(CACHE_DYNAMIC_NAME)
+        .then(function(cache) {
+          return fetch(event.request)
+            .then(function(res) {
+              cache.put(event.request, res.clone());
+              return res;
+            });
+        })
+    );
   });
   
