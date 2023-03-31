@@ -44,7 +44,7 @@ self.addEventListener('install', function(event) {
             '/images/logo512.ico',
             '/images/logo256.ico',
             '/images/logo128.ico',
-            '/images/logo96.ico',
+            '/images/logo96.png',
             '/images/logo64.ico',
             '/images/logo48.ico'
           ])
