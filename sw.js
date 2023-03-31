@@ -51,7 +51,6 @@ self.addEventListener('install', function(event) {
             '/Tutorial/step01-initial-HTML-setup.html',
             '/Tutorial/step02-MDL-layout-component.html',
             '/Tutorial/step03-the-grid-component.html',
-            '/Tutorial/step03-the-grid-component.html',
             '/Tutorial/step04-customising-the-layout.html',
             '/Tutorial/step05-individual-pages/about.html',
             '/Tutorial/step05-individual-pages/blog.html',
