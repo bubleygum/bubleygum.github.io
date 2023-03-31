@@ -74,6 +74,7 @@ self.addEventListener('fetch', function (event) {
         })
     );
 });
+
 //cache
 self.addEventListener('install', function(event) {
     console.log('[Service Worker] Installing Service Worker ...', event);
@@ -81,7 +82,7 @@ self.addEventListener('install', function(event) {
       caches.open('static')
         .then(function(cache) {
           console.log('[Service Worker] Precaching App Shell');
-          cache.add('/src/js/app.js')
+          cache.add('/app.js')
         })
     )
   });
