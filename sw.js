@@ -58,7 +58,7 @@ self.addEventListener('install', function(event) {
             '/Tutorial/step05-individual-pages/contact.html',
             '/Tutorial/step05-individual-pages/index.html',
             '/Tutorial/step05-individual-pages/portfolio-example01.html',
-            '/Tutorial/styles.css',
+            '/Tutorial/styles.css'
           ])
         })
     );
