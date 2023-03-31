@@ -53,6 +53,11 @@ self.addEventListener('install', function(event) {
             '/Tutorial/step03-the-grid-component.html',
             '/Tutorial/step03-the-grid-component.html',
             '/Tutorial/step04-customising-the-layout.html',
+            '/Tutorial/step05-individual-pages/about.html',
+            '/Tutorial/step05-individual-pages/blog.html',
+            '/Tutorial/step05-individual-pages/contact.html',
+            '/Tutorial/step05-individual-pages/index.html',
+            '/Tutorial/step05-individual-pages/portfolio-example01.html',
             '/Tutorial/styles.css'
           ])
         })
